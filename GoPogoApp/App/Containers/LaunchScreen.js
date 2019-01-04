@@ -32,19 +32,31 @@
 import React from 'react';
 import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-
-
+import Alert from 'react';
+import geolocation from 'react';
 export default class FetchExample extends React.Component {
 
   constructor(props){
     super(props);
     this.state ={ isLoading: true}
   }
-
+  
   componentDidMount(){
     // return fetch('https://facebook.github.io/react-native/movies.json')
+    navigator.geolocation.getCurrentPosition(
+      function logPosition(pos){
+        var crd = pos.coords;
+        console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+      }
+
+    );
+    
     return fetch('https://fleet.invers.com/pogo/App/ItemsOnMap/ItemsOnMap.aspx')
       .then((response) => {
+        console.log('Position DL Complete')
 
         this.setState({
           isLoading: false,
