@@ -44,7 +44,7 @@ export default class FetchExample extends React.Component {
   componentDidMount(){
     // return fetch('https://facebook.github.io/react-native/movies.json')
     navigator.geolocation.getCurrentPosition(
-      function logPosition(pos){
+      pos => {
         //Should set the state of current location - ONLY IF "Current location" is selected, else should use inputted address (probably out of scope without having to pay for an API key - check the limits).
         var crd = pos.coords;
         console.log('Your current position is:');
