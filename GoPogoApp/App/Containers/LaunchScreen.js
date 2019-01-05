@@ -34,13 +34,14 @@ import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Alert from 'react';
 import geolocation from 'react';
+import parse5 from 'parse5';
 export default class FetchExample extends React.Component {
 
   constructor(props){
     super(props);
     this.state ={ isLoading: true}
   }
-  
+ 
   componentDidMount(){
     // return fetch('https://facebook.github.io/react-native/movies.json')
     navigator.geolocation.getCurrentPosition(
@@ -58,7 +59,11 @@ export default class FetchExample extends React.Component {
     return fetch('https://fleet.invers.com/pogo/App/ItemsOnMap/ItemsOnMap.aspx')
       .then((response) => {
         console.log('Position DL Complete')
-
+        const docFrag = parse5.parse(response._bodyText)
+        console.log('YOooooooooooooooooooooooooooOOOOOOOOOO');
+        // console.log(Object.keys(docFrag.childNodes[1].childNodes[2].childNodes[1].childNodes[45].tagName);
+        console.log(Object.keys(docFrag.childNodes[1].childNodes[2].childNodes[1].childNodes[1].childNodes[44].childNodes[0].value));
+        console.log('YOooooooooooooooooooooooooooOOOOOOOOOO');
         this.setState({
           isLoading: false,
           dataSource: response._bodyText,
