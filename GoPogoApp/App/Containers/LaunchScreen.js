@@ -36,6 +36,7 @@ import Alert from 'react';
 import geolocation from 'react';
 import parse5 from 'parse5';
 import geolib from 'geolib';
+import ParamsForm from '../Components/ParamsForm'
 export default class FetchExample extends React.Component {
 
   constructor(props){
@@ -111,11 +112,8 @@ export default class FetchExample extends React.Component {
     }
 
     return(
-
         <ScrollView>
-        <Text>
-          {this.state.dataSource}
-        </Text>
+          <ParamsForm />
         </ScrollView>
 
     );
